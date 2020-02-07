@@ -1,6 +1,6 @@
 # Arguments
 # strip=true           strip compiled binaries
-# upd=--best           use upx (pass value as upx flag)
+# upd=--best           use upx (pass value as upx flag) NOT RECOMMENDED
 # packages="foo bar"   install given packages
 
 ARG go_version
