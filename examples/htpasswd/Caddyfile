@@ -1,0 +1,20 @@
+127.0.0.1
+tls self_signed
+
+root {$PWD}/public
+browse
+
+jwt {
+    path /
+	redirect /login?backTo={rewrite_uri}
+}
+
+# user: bob
+# password: secret
+
+# users file was created using htpasswd tool
+# htpasswd -user bob -password secret >> users
+
+login {
+	htpasswd file=users
+}
