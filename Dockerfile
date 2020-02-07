@@ -14,6 +14,11 @@ WORKDIR /caddy
 RUN go get
 RUN go build -ldflags "-w -s" && go install
 
+COPY ./md2html /md2html
+WORKDIR /md2html
+RUN go get
+RUN go build -ldflags "-w -s" && go install
+
 WORKDIR /
 COPY ./dependencies ./dependencies
 COPY ./scripts/install_tool.sh ./install_tool
