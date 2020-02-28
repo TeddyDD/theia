@@ -7,6 +7,7 @@ require (
 	github.com/caddyserver/caddy v1.0.4
 	github.com/captncraig/cors v0.0.0-20190703115713-e80254a89df1
 	github.com/jung-kurt/caddy-pubsub v0.0.0-00010101000000-000000000000
+	github.com/lucaslorentz/caddy-supervisor v0.3.1
 	github.com/nicolasazrak/caddy-cache v0.3.4
 	github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35 // indirect
 	github.com/tarent/loginsrv v1.3.1
