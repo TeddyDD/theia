@@ -1,6 +1,6 @@
-ARG go_version # allows to customize go version
+ARG GO_VERSION=1.14
 
-FROM golang:${go_version:-1.13.7}-alpine3.11 AS builder
+FROM golang:$GO_VERSION-alpine3.11 AS builder
 RUN apk --no-cache add git
 ENV CGO_ENABLED=0
 
@@ -20,12 +20,12 @@ COPY ./dependencies ./dependencies
 COPY ./scripts/install_tool.sh ./install_tool
 RUN ./install_tool dependencies
 
-ARG strip      # strip compiled binaries if not empty
+ARG strip
 
 RUN [ -n "$strip" ] &&  ( apk --no-cache add binutils && \
   strip /go/bin/* && du -hs /go/bin/* ) || :
 
-ARG upx        # use upx (value is upx params) NOT RECOMMENDED
+ARG upx
 
 RUN [ -n "$upx" ] &&  ( apk --no-cache add upx && \
   upx $upx /go/bin/* && du -hs /go/bin/* ) || :
@@ -33,7 +33,7 @@ RUN [ -n "$upx" ] &&  ( apk --no-cache add upx && \
 FROM alpine:latest
 COPY --from=builder /go/bin/* /usr/local/bin/
 
-ARG packages   # additional alpine packages to install
+ARG packages
 
 RUN [ -n "$packages" ] && (apk --no-cache add $packages) || :
 USER 1000:1000
